@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Body Shop</string>
+    <string name="website">www.dumbfuckingsite.com</string>
+    <string name="homeTitle">Inicio</string>
+    <string name="support">Soporte</string>
+    <string name="carrito">Mi carrito</string>
+    <string name="novedades">Novedades</string>
+    <string name="ofertas">Ofertas</string>
+    <string name="ps4">PS4</string>
+    <string name="xbox">XBOX</string>
+    <string name="donde_estamos">¿Dónde estamos?</string>
+    <string name="contacto">Contacto</string>
+</resources>
