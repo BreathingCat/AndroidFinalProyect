@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.carrito:
                 break;
             case R.id.novedades:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, InfoActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 break;
