@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
 
             case R.id.inicio:
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.carrito:
                 break;
             case R.id.novedades:
+                intent = new Intent(this, InfoActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
             case R.id.ofertas:
                 break;
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.donde_estamos:
-                Intent intent = new Intent(this, DondeEstamosActivity.class);
+                intent = new Intent(this, DondeEstamosActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 break;

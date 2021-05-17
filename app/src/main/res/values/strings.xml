@@ -10,4 +10,7 @@
     <string name="xbox">XBOX</string>
     <string name="donde_estamos">¿Dónde estamos?</string>
     <string name="contacto">Contacto</string>
+    <string name="title_activity_info">InfoActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

@@ -24,7 +24,8 @@ public class GameDataHelper extends SQLiteOpenHelper {
                 "PRICE TEXT," +
                 "IMAGE_ID INTEGER," +
                 "NEW_GAME INTEGER," +
-                "DISCOUNTED INTEGER" +
+                "DISCOUNTED INTEGER," +
+                "CONSOLE TEXT" +
                 ")");
         db.execSQL("CREATE TABLE SHOPPING_LIST(" +
                 "_id INTEGER," +
@@ -42,7 +43,7 @@ public class GameDataHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM GAMES WHERE _id IN (SELECT _id FROM SHOPPING_LIST)", null);
     }
 
-    public void addVideogame(String nombre, String descripcion, int precio, int img_id, int nuevo, int descuento) {
+    public void addVideogame(String nombre, String descripcion, int precio, int img_id, int nuevo, int descuento, String consola) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues gameData = new ContentValues();
         gameData.put("NAME", nombre);
@@ -51,6 +52,7 @@ public class GameDataHelper extends SQLiteOpenHelper {
         gameData.put("IMAGE_ID", img_id);
         gameData.put("NEW_GAME", nuevo);
         gameData.put("DISCOUNTED", descuento);
+        gameData.put("CONSOLE", consola);
 
         db.insert("GAMES", null, gameData);
     }
