@@ -1,6 +1,8 @@
 package com.eboshug.hugobosquep2;
 
-public class VideoGame {
+import java.io.Serializable;
+
+public class VideoGame implements Serializable {
     private String nombre;
     private String descripcion;
     private float precio;
