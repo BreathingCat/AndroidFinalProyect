@@ -38,7 +38,27 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
 
+    public void mockData() {
+        this.addVideogame(new VideoGame("Nombre1", "Descripcion1", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre2", "Descripcion2", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre3", "Descripcion3", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre4", "Descripcion4", 1.1f, R.drawable.ic_launcher_background, 0, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre5", "Descripcion5", 1.1f, R.drawable.ic_launcher_background, 0, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre6", "Descripcion6", 1.1f, R.drawable.ic_launcher_background, 0, 0, "PS4"));
+        this.addVideogame(new VideoGame("Nombre7", "Descripcion7", 1.1f, R.drawable.ic_launcher_background, 0, 1, "PS4"));
+        this.addVideogame(new VideoGame("Nombre8", "Descripcion8", 1.1f, R.drawable.ic_launcher_background, 0, 1, "PS4"));
+        this.addVideogame(new VideoGame("Nombre9", "Descripcion9", 1.1f, R.drawable.ic_launcher_background, 0, 1, "PS4"));
+        this.addVideogame(new VideoGame("Nombre10", "Descripcion10", 1.1f, R.drawable.ic_launcher_background, 1, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre11", "Descripcion11", 1.1f, R.drawable.ic_launcher_background, 1, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre12", "Descripcion12", 1.1f, R.drawable.ic_launcher_background, 1, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre13", "Descripcion13", 1.1f, R.drawable.ic_launcher_background, 0, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre14", "Descripcion14", 1.1f, R.drawable.ic_launcher_background, 0, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre15", "Descripcion15", 1.1f, R.drawable.ic_launcher_background, 0, 0, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre16", "Descripcion16", 1.1f, R.drawable.ic_launcher_background, 0, 1, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre17", "Descripcion17", 1.1f, R.drawable.ic_launcher_background, 0, 1, "XBOX"));
+        this.addVideogame(new VideoGame("Nombre18", "Descripcion18", 1.1f, R.drawable.ic_launcher_background, 0, 1, "XBOX"));
     }
 
     public List<VideoGame> getShoppingList() {
@@ -62,6 +82,18 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
         return listaVideoJuegos;
 
+    }
+
+    public void addToShoppingList(VideoGame videogame) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO SHOPPING_LIST (_id) VALUES(" +
+                "SELECT (_id) FROM GAMES WHERE NAME=" + videogame.getNombre() + ")", null);
+    }
+
+    public void removeFromShoppingList(VideoGame videogame) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM SHOPPING_LIST " +
+                "WHERE _id IN (SELECT _id FROM GAMES WHERE NAME=" + videogame.getNombre() + ")");
     }
 
     public void addVideogame(VideoGame game) {

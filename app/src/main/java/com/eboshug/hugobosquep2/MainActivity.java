@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private GameDataHelper db;
+    private GameDataHelper db = new GameDataHelper(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
 
-        this.db = new GameDataHelper(MainActivity.this);
+        this.db.mockData();
 
     }
 

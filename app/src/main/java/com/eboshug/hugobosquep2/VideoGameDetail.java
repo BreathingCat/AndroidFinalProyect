@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,10 +39,13 @@ public class VideoGameDetail extends AppCompatActivity {
         this.caratula.setImageResource(game.getImg_id());
         this.descripcion.setText(game.getDescripcion());
 
+        GameDataHelper videogameHelper = new GameDataHelper(this);
+
         this.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                videogameHelper.addToShoppingList(game);
+                Toast.makeText(VideoGameDetail.this, "Added " + game.getNombre() + " to your shopping list", Toast.LENGTH_SHORT).show();
             }
         });
 
