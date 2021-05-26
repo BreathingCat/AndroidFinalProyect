@@ -21,7 +21,7 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DELETE FROM GAMES");
+
         db.execSQL("CREATE TABLE GAMES (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NAME TEXT," +

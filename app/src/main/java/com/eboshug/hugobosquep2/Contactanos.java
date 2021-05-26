@@ -8,28 +8,40 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.material.navigation.NavigationView;
 
+public class Contactanos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    RadioGroup radioGroup;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private GameDataHelper db = new GameDataHelper(MainActivity.this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_contactanos);
+
+        radioGroup = findViewById(R.id.group);
+
+        Button buttonApply = findViewById(R.id.button);
+        buttonApply.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+            checkButton(v);
+            }
+        });
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("App Title");
+        toolbar.setTitle("Contactanos");
         setSupportActionBar(toolbar);
 
         this.drawerLayout = findViewById(R.id.drawerLayout);
@@ -41,13 +53,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         this.navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    public void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        if (radioId == 1){
+            Intent intent = new Intent(this, ContactoSimpleActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
 
-        this.db.mockData();
-        this.db.close();
+        }
+        else if (radioId==2){
+            Intent intent = new Intent(this, ReclamacionActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+
+        }
 
     }
-
-
 
     @Override
     public void onBackPressed() {
