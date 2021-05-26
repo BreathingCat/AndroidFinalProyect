@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("DELETE FROM GAMES");
         db.execSQL("CREATE TABLE GAMES (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NAME TEXT," +
@@ -41,6 +43,9 @@ public class GameDataHelper extends SQLiteOpenHelper {
     }
 
     public void mockData() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM GAMES");
+        db.close();
         this.addVideogame(new VideoGame("Nombre1", "Descripcion1", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
         this.addVideogame(new VideoGame("Nombre2", "Descripcion2", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
         this.addVideogame(new VideoGame("Nombre3", "Descripcion3", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
@@ -82,6 +87,91 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
         return listaVideoJuegos;
 
+    }
+
+    public ArrayList<VideoGame> getNovedades() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE NEW_GAME=1", null);
+        ArrayList<VideoGame> listaNovedades = new ArrayList<VideoGame>(cursor.getCount());
+
+        while(cursor.moveToNext()) {
+            listaNovedades.add(new VideoGame(
+                    cursor.getString(cursor.getColumnIndex("NAME")),
+                    cursor.getString(cursor.getColumnIndex("DESCRIPTION")),
+                    cursor.getFloat(cursor.getColumnIndex("PRICE")),
+                    cursor.getInt(cursor.getColumnIndex("IMAGE_ID")),
+                    cursor.getInt(cursor.getColumnIndex("NEW_GAME")),
+                    cursor.getInt(cursor.getColumnIndex("DISCOUNTED")),
+                    cursor.getString(cursor.getColumnIndex("CONSOLE"))
+            ));
+        }
+
+        Log.d("TAG", "getNovedades: " + Integer.toString(cursor.getCount()));
+
+        return listaNovedades;
+
+    }
+
+    public ArrayList<VideoGame> getOfertas() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE DISCOUNTED=1", null);
+        ArrayList<VideoGame> listaOfertas = new ArrayList<VideoGame>(cursor.getCount());
+
+        while(cursor.moveToNext()) {
+            listaOfertas.add(new VideoGame(
+                    cursor.getString(cursor.getColumnIndex("NAME")),
+                    cursor.getString(cursor.getColumnIndex("DESCRIPTION")),
+                    cursor.getFloat(cursor.getColumnIndex("PRICE")),
+                    cursor.getInt(cursor.getColumnIndex("IMAGE_ID")),
+                    cursor.getInt(cursor.getColumnIndex("NEW_GAME")),
+                    cursor.getInt(cursor.getColumnIndex("DISCOUNTED")),
+                    cursor.getString(cursor.getColumnIndex("CONSOLE"))
+            ));
+        }
+
+        return listaOfertas;
+
+    }
+
+    public ArrayList<VideoGame> getPS4Games() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE CONSOLE='PS4'", null);
+        ArrayList<VideoGame> listaJuegos = new ArrayList<VideoGame>(cursor.getCount());
+
+        while(cursor.moveToNext()) {
+            listaJuegos.add(new VideoGame(
+                    cursor.getString(cursor.getColumnIndex("NAME")),
+                    cursor.getString(cursor.getColumnIndex("DESCRIPTION")),
+                    cursor.getFloat(cursor.getColumnIndex("PRICE")),
+                    cursor.getInt(cursor.getColumnIndex("IMAGE_ID")),
+                    cursor.getInt(cursor.getColumnIndex("NEW_GAME")),
+                    cursor.getInt(cursor.getColumnIndex("DISCOUNTED")),
+                    cursor.getString(cursor.getColumnIndex("CONSOLE"))
+            ));
+        }
+
+        return listaJuegos;
+
+    }
+
+    public ArrayList<VideoGame> getXBOXGames() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE CONSOLE='XBOX'", null);
+        ArrayList<VideoGame> listaJuegos = new ArrayList<VideoGame>(cursor.getCount());
+
+        while(cursor.moveToNext()) {
+            listaJuegos.add(new VideoGame(
+                    cursor.getString(cursor.getColumnIndex("NAME")),
+                    cursor.getString(cursor.getColumnIndex("DESCRIPTION")),
+                    cursor.getFloat(cursor.getColumnIndex("PRICE")),
+                    cursor.getInt(cursor.getColumnIndex("IMAGE_ID")),
+                    cursor.getInt(cursor.getColumnIndex("NEW_GAME")),
+                    cursor.getInt(cursor.getColumnIndex("DISCOUNTED")),
+                    cursor.getString(cursor.getColumnIndex("CONSOLE"))
+            ));
+        }
+
+        return listaJuegos;
     }
 
     public void addToShoppingList(VideoGame videogame) {

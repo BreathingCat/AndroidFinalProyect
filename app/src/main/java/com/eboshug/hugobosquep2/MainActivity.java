@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         this.db.mockData();
+        this.db.close();
 
     }
 

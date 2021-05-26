@@ -2,17 +2,28 @@ package com.eboshug.hugobosquep2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
-public class VideoGameDetail extends AppCompatActivity {
+public class VideoGameDetail extends AppCompatActivity{
+
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
 
     TextView titulo;
     TextView precio;
@@ -24,6 +35,13 @@ public class VideoGameDetail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
+
+        this.toolbar = findViewById(R.id.customToolbar);
+        toolbar.setTitle("App Title");
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         this.titulo = findViewById(R.id.title);
         this.precio = findViewById(R.id.precio);
@@ -50,4 +68,28 @@ public class VideoGameDetail extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.shopAction:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }
