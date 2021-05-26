@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class XBOXFragment extends Fragment {
-    private static final String TAG = "XBOXFragment";
+
     RecyclerView recyclerView;
 
     @Nullable

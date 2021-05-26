@@ -8,7 +8,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("App Title");
+        toolbar.setTitle("Bienvenido");
         setSupportActionBar(toolbar);
 
         this.drawerLayout = findViewById(R.id.drawerLayout);
@@ -62,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.carrito:
+                intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.novedades:

@@ -31,7 +31,7 @@ public class CarritoActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_carrito);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("App Title");
+        toolbar.setTitle("Carrito");
         setSupportActionBar(toolbar);
 
         this.drawerLayout = findViewById(R.id.drawerLayoutCarrito);
@@ -48,7 +48,7 @@ public class CarritoActivity extends AppCompatActivity implements NavigationView
 
         this.recyclerView = findViewById(R.id.recyclerViewCarrito);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        this.recyclerView.setAdapter(new RecyclerAdapter(db.getShoppingList(), this));
+        this.recyclerView.setAdapter(new RecyclerAdapterCarrito(db.getShoppingList(), this));
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         db.close();
