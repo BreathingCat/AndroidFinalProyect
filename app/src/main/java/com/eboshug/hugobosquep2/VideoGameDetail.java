@@ -80,6 +80,8 @@ public class VideoGameDetail extends AppCompatActivity{
 
         switch (item.getItemId()){
             case R.id.shopAction:
+                Intent intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
                 break;
         }
 

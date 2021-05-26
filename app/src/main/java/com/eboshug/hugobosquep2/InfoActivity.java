@@ -87,6 +87,9 @@ public class InfoActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.carrito:
+                intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.novedades:
