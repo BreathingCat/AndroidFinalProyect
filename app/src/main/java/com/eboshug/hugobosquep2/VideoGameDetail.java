@@ -11,19 +11,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 
 public class VideoGameDetail extends AppCompatActivity{
 
     private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
 
     TextView titulo;
     TextView precio;
@@ -37,7 +33,7 @@ public class VideoGameDetail extends AppCompatActivity{
         setContentView(R.layout.activity_game_detail);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("App Title");
+        toolbar.setTitle("Detalles");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,7 +59,7 @@ public class VideoGameDetail extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 videogameHelper.addToShoppingList(game);
-                Toast.makeText(VideoGameDetail.this, "Added " + game.getNombre() + " to your shopping list", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VideoGameDetail.this, "Added " + game.getNombre() + " to your shopping list", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -80,6 +76,8 @@ public class VideoGameDetail extends AppCompatActivity{
 
         switch (item.getItemId()){
             case R.id.shopAction:
+                Intent intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
                 break;
         }
 

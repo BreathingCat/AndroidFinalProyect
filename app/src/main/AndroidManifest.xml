@@ -8,17 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HugoBosqueP2">
+        android:theme="@style/Theme.HugoBosqueP2"
+        android:name=".CustomApp">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".DondeEstamosActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".VideoGameDetail" />
+        <activity android:name=".CarritoActivity"/>
     </application>
 
 </manifest>

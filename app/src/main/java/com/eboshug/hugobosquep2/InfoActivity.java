@@ -50,7 +50,7 @@ public class InfoActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.setupWithViewPager(viewPager);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("INFO");
+        toolbar.setTitle("Catalogo");
         setSupportActionBar(toolbar);
 
         this.drawerLayout = findViewById(R.id.drawerLayout);
@@ -87,6 +87,9 @@ public class InfoActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.carrito:
+                intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.novedades:
@@ -130,6 +133,9 @@ public class InfoActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.shopAction:
+                Intent intent = new Intent(this, CarritoActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
         }
 

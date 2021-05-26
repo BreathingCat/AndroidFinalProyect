@@ -21,7 +21,6 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DELETE FROM GAMES");
         db.execSQL("CREATE TABLE GAMES (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NAME TEXT," +
@@ -34,7 +33,8 @@ public class GameDataHelper extends SQLiteOpenHelper {
                 ")");
         db.execSQL("CREATE TABLE SHOPPING_LIST(" +
                 "_id INTEGER," +
-                "FOREIGN KEY (_id) REFERENCES GAMES(_id) ON UPDATE CASCADE ON DELETE CASCADE" +
+                "FOREIGN KEY (_id) REFERENCES GAMES(_id) ON UPDATE CASCADE ON DELETE CASCADE," +
+                "UNIQUE(_id)" +
                 ")");
     }
 
@@ -45,7 +45,8 @@ public class GameDataHelper extends SQLiteOpenHelper {
     public void mockData() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM GAMES");
-        db.close();
+        db.execSQL("DELETE FROM SHOPPING_LIST");
+
         this.addVideogame(new VideoGame("Nombre1", "Descripcion1", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
         this.addVideogame(new VideoGame("Nombre2", "Descripcion2", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
         this.addVideogame(new VideoGame("Nombre3", "Descripcion3", 1.1f, R.drawable.ic_launcher_background, 1, 0, "PS4"));
@@ -68,9 +69,11 @@ public class GameDataHelper extends SQLiteOpenHelper {
 
     public List<VideoGame> getShoppingList() {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id IN (SELECT _id FROM SHOPPING_LIST)", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id IN ((SELECT _id FROM SHOPPING_LIST))", null);
 
         List<VideoGame> listaVideoJuegos = new ArrayList<VideoGame>(cursor.getCount());
+
+        Log.d("TAG", "getShoppingList:" + Integer.toString(cursor.getCount()));
 
         while (cursor.moveToNext()) {
             listaVideoJuegos.add(new VideoGame(
@@ -105,8 +108,6 @@ public class GameDataHelper extends SQLiteOpenHelper {
                     cursor.getString(cursor.getColumnIndex("CONSOLE"))
             ));
         }
-
-        Log.d("TAG", "getNovedades: " + Integer.toString(cursor.getCount()));
 
         return listaNovedades;
 
@@ -175,15 +176,15 @@ public class GameDataHelper extends SQLiteOpenHelper {
     }
 
     public void addToShoppingList(VideoGame videogame) {
+        Log.d("TAG", "addToShoppingList: ADDING GAME TO SHOPPING LIST");
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO SHOPPING_LIST (_id) VALUES(" +
-                "SELECT (_id) FROM GAMES WHERE NAME=" + videogame.getNombre() + ")", null);
+        db.execSQL("INSERT INTO SHOPPING_LIST (_id) VALUES ((SELECT _id FROM GAMES WHERE NAME='" + videogame.getNombre() + "'))");
     }
 
     public void removeFromShoppingList(VideoGame videogame) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM SHOPPING_LIST " +
-                "WHERE _id IN (SELECT _id FROM GAMES WHERE NAME=" + videogame.getNombre() + ")");
+                "WHERE _id IN ((SELECT _id FROM GAMES WHERE NAME='" + videogame.getNombre() + "'))");
     }
 
     public void addVideogame(VideoGame game) {
