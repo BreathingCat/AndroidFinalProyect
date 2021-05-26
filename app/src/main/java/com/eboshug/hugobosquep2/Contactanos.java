@@ -24,6 +24,8 @@ public class Contactanos extends AppCompatActivity implements NavigationView.OnN
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    RadioButton rd1;
+    RadioButton rd2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -31,12 +33,13 @@ public class Contactanos extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_contactanos);
 
         radioGroup = findViewById(R.id.group);
-
+        rd1=(RadioButton)findViewById(R.id.op1);
+        rd2=(RadioButton)findViewById(R.id.op2);
         Button buttonApply = findViewById(R.id.button);
         buttonApply.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-            checkButton(v);
+            checkButton();
             }
         });
 
@@ -54,15 +57,16 @@ public class Contactanos extends AppCompatActivity implements NavigationView.OnN
         this.navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    public void checkButton(View v){
+    public void checkButton(){
         int radioId = radioGroup.getCheckedRadioButtonId();
-        if (radioId == 1){
+        rd1=(RadioButton)findViewById(R.id.op1);
+        rd2=(RadioButton)findViewById(R.id.op2);
+        if (rd1.isChecked()){
             Intent intent = new Intent(this, ContactoSimpleActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
-
         }
-        else if (radioId==2){
+        else if (rd2.isChecked()){
             Intent intent = new Intent(this, ReclamacionActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
