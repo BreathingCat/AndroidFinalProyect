@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private GameDataHelper db;
+    private GameDataHelper db = new GameDataHelper(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
 
-        this.db = new GameDataHelper(MainActivity.this);
+        this.db.mockData();
+        this.db.close();
 
     }
 
@@ -68,16 +69,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.carrito:
                 break;
+
             case R.id.novedades:
                 intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Novedades");
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 break;
+
             case R.id.ofertas:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Ofertas");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
+
             case R.id.ps4:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "PS4");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
+
             case R.id.xbox:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Xbox");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.donde_estamos:

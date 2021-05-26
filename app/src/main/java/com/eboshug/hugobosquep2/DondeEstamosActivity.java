@@ -57,10 +57,11 @@ public class DondeEstamosActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
 
             case R.id.inicio:
-                Intent intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 break;
@@ -68,16 +69,34 @@ public class DondeEstamosActivity extends AppCompatActivity implements Navigatio
             case R.id.carrito:
                 break;
             case R.id.novedades:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Novedades");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
+
             case R.id.ofertas:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Ofertas");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
+
             case R.id.ps4:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "PS4");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
+
             case R.id.xbox:
+                intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("tab", "Xbox");
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.donde_estamos:
-                this.drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.contacto:
