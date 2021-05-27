@@ -44,6 +44,7 @@ public class RecyclerAdapterCarrito extends RecyclerView.Adapter<RecyclerAdapter
                 GameDataHelper db = new GameDataHelper(context);
                 db.removeFromShoppingList(listaVideojuegos.get(position));
                 listaVideojuegos.remove(position);
+                notifyItemRemoved(position);
             }
         });
 

@@ -8,6 +8,7 @@ public class CustomApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        this.deleteDatabase("gamedatabase");
         new GameDataHelper(this).mockData();
 
     }

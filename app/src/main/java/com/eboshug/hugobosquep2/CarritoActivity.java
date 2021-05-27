@@ -2,8 +2,9 @@ package com.eboshug.hugobosquep2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class CarritoActivity extends AppCompatActivity implements NavigationView
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private RecyclerView recyclerView;
+    private Button finalizeShopping;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,12 @@ public class CarritoActivity extends AppCompatActivity implements NavigationView
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         db.close();
+
+        this.finalizeShopping = findViewById(R.id.buttonFinalize);
+        this.finalizeShopping.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FinalizeShoppingActivity.class);
+            startActivity(intent);
+        });
 
     }
 

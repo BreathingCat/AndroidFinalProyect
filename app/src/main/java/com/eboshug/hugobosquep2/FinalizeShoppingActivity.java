@@ -4,61 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class VideoGameDetail extends AppCompatActivity{
+public class FinalizeShoppingActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-
-    TextView titulo;
-    TextView precio;
-    ImageView caratula;
-    TextView descripcion;
-    FloatingActionButton fab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_detail);
+        setContentView(R.layout.activity_finalize_shopping);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("Detalles");
+        toolbar.setTitle("Finalizar compra");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        this.titulo = findViewById(R.id.title);
-        this.precio = findViewById(R.id.precio);
-        this.caratula = findViewById(R.id.caratula);
-        this.descripcion = findViewById(R.id.description);
-        this.fab = findViewById(R.id.fab);
-
-        Intent intent = getIntent();
-        VideoGame game = (VideoGame) intent.getSerializableExtra("game");
-
-        this.titulo.setText(game.getNombre());
-        this.precio.setText(String.valueOf(game.getPrecio()) + " €");
-        this.caratula.setImageResource(game.getImg_id());
-        this.descripcion.setText(game.getDescripcion());
-
-        GameDataHelper videogameHelper = new GameDataHelper(this);
-
-        this.fab.setOnClickListener(v -> {
-            videogameHelper.addToShoppingList(game);
-            finish();
-        });
 
     }
 
