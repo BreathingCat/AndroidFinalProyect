@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eboshug.hugobosquep2">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -8,7 +14,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HugoBosqueP2"
+        android:theme="@style/Theme.HugoBosqueP2">
+        <activity android:name=".ContactoSimpleActivity"></activity>
+        <activity android:name=".ReclamacionActivity" />
+        <activity android:name=".Contactanos" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCdslN-NkANxkSPO8kJ-aEYRgjrz5759EI" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         android:name=".CustomApp">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,5 +46,6 @@
         <activity android:name=".CarritoActivity"/>
         <activity android:name=".FinalizeShoppingActivity" />
     </application>
-
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 </manifest>

@@ -101,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.contacto:
+                intent = new Intent(this, Contactanos.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
                 break;
         }
 
