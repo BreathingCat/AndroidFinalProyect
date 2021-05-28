@@ -82,7 +82,7 @@ public class FinalizeShoppingActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-        
+
     }
 
     @Override
