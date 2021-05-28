@@ -44,5 +44,6 @@
         <activity android:name=".InfoActivity" />
         <activity android:name=".VideoGameDetail" />
     </application>
-
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 </manifest>

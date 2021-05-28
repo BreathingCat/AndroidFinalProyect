@@ -63,7 +63,11 @@ public class DondeEstamosActivity extends AppCompatActivity implements OnMapRead
         mMap.addMarker(new MarkerOptions()
                 .position(tienda)
                 .title("Donde estamos :)"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tienda));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda,15));
+        // Zoom in, animating the camera.
+        mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 100000, null);
     }
 
 
