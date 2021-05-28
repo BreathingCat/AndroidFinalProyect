@@ -1,54 +1,66 @@
 package com.eboshug.hugobosquep2;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CarritoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private RecyclerView recyclerView;
+    private Button finalizeShopping;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_carrito);
 
         this.toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle("Bienvenido");
+        toolbar.setTitle("Carrito");
         setSupportActionBar(toolbar);
 
-        this.drawerLayout = findViewById(R.id.drawerLayout);
+        this.drawerLayout = findViewById(R.id.drawerLayoutCarrito);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, this.drawerLayout, this.toolbar,0,0
         );
         this.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        GameDataHelper db = new GameDataHelper(this);
+
         this.navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
 
-    }
+        this.recyclerView = findViewById(R.id.recyclerViewCarrito);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.recyclerView.setAdapter(new RecyclerAdapterCarrito(db.getShoppingList(), this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
-    @Override
-    public void onBackPressed() {
-        if(this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        db.close();
+
+        this.finalizeShopping = findViewById(R.id.buttonFinalize);
+        this.finalizeShopping.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FinalizeShoppingActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     @Override
@@ -57,13 +69,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
 
             case R.id.inicio:
-                this.drawerLayout.closeDrawer(GravityCompat.START);
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.carrito:
-                intent = new Intent(this, CarritoActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
+                this.drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.novedades:
@@ -101,9 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.contacto:
-                intent = new Intent(this, Contactanos.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
                 break;
         }
 
@@ -111,22 +119,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.shopAction:
-                Intent intent = new Intent(this, CarritoActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

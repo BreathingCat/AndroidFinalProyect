@@ -30,7 +30,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:src="@drawable/ic_launcher_background"></ImageView>
+                android:src="@drawable/logo"></ImageView>
 
         </LinearLayout>
 
