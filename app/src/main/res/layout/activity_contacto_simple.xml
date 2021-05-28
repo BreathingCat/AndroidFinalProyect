@@ -39,16 +39,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Nombre"
                 android:inputType="textPersonName"
-                android:hint="Nombre" />
+                android:paddingTop="50px"
+                android:paddingBottom="20px" />
 
             <EditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="Email"
                 android:inputType="textPersonName"
-                android:hint="Email" />
+                android:paddingTop="50px"
+                android:paddingBottom="20px" />
 
             <EditText
                 android:id="@+id/editConsulta"
@@ -63,7 +67,8 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enviar" />
+                android:text="Enviar"
+                app:backgroundTint="@color/azul" />
 
         </LinearLayout>
 

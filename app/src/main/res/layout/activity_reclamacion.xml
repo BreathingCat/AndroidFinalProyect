@@ -44,7 +44,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Email"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingTop="50px"
+                    android:paddingBottom="20px" />
 
                 <EditText
                     android:id="@+id/editNombre"
@@ -52,7 +54,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Nombre"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingTop="50px"
+                    android:paddingBottom="20px" />
 
                 <EditText
                     android:id="@+id/editReclamacion"
@@ -60,7 +64,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Id Factura"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:paddingTop="50px" />
 
                 <EditText
                     android:id="@+id/editConsulta"
@@ -95,41 +100,48 @@
                         android:id="@+id/buttonCamara"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10px"
                         android:layout_marginStart="10px"
                         android:layout_marginLeft="10px"
                         android:layout_marginEnd="30px"
                         android:layout_marginRight="30px"
                         android:layout_weight="1"
-                        android:text="Camara" />
+                        android:text="Camara"
+                        app:backgroundTint="@color/rosa_2" />
 
                     <Button
                         android:id="@+id/buttonGaleria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10px"
                         android:layout_marginStart="30px"
                         android:layout_marginLeft="30px"
                         android:layout_marginEnd="30px"
                         android:layout_marginRight="30px"
                         android:layout_weight="1"
-                        android:text="Galeria" />
+                        android:text="Galeria"
+                        app:backgroundTint="@color/rosa_2" />
 
                     <Button
                         android:id="@+id/buttonVideo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10px"
                         android:layout_marginStart="30px"
                         android:layout_marginLeft="30px"
                         android:layout_marginEnd="10px"
                         android:layout_marginRight="10px"
                         android:layout_weight="1"
-                        android:text="Video" />
+                        android:text="Video"
+                        app:backgroundTint="@color/rosa_2" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enviar" />
+                    android:text="Enviar"
+                    app:backgroundTint="@color/azul" />
 
 
             </LinearLayout>

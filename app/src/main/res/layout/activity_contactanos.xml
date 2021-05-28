@@ -28,7 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="30px"
-                android:text="Seleccione la opción que mas le satisfaga" />
+                android:text="Seleccione la opción que mas le satisfaga"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -53,7 +56,10 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Siguiente"></Button>
+                android:text="Siguiente"
+                android:textColorHighlight="@color/rosa"
+                android:textColorLink="#FFFFFF"
+                app:backgroundTint="@color/azul"></Button>
         </LinearLayout>
 
 
