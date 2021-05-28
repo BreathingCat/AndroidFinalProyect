@@ -9,8 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.MapView;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +23,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.text.DecimalFormat;
+
 
 public class DondeEstamosActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener  {
 
@@ -29,6 +35,7 @@ public class DondeEstamosActivity extends AppCompatActivity implements OnMapRead
     private NavigationView navigationView;
     private MapView mapView;
     private GoogleMap mMap;
+    private TextView texto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +74,42 @@ public class DondeEstamosActivity extends AppCompatActivity implements OnMapRead
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
         // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 100000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 10000, null);
+        LatLng aqui = new LatLng(40.41460947708062, -3.696711138998221);
+
+        double distancia = CalculationByDistance(aqui, tienda);
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        String nDistancia = df.format(distancia);
+        texto = findViewById(R.id.distancia);
+        texto.setText("Te encuentras a " + nDistancia + " kms de la tienda más cercana.");
     }
 
+
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
+    }
 
     @Override
     public void onBackPressed() {
