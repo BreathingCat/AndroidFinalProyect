@@ -82,7 +82,7 @@
 
                         <ImageView
                             android:id="@+id/caratula"
-                            android:layout_width="wrap_content"
+                            android:layout_width="400px"
                             android:layout_height="wrap_content"
                             android:gravity="top"
                             android:padding="10dp"
@@ -109,19 +109,19 @@
                     android:text="exampleText"
                     android:textSize="23dp" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/ic_add_shopping_cart_white_24dp"
+                    android:tint="#FFFFFF"
+                    app:backgroundTint="@color/azul"
+                    app:rippleColor="#FFFFFF" />
+
             </LinearLayout>
         </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="30dp"
-            android:src="@drawable/ic_add_shopping_cart_white_24dp"
-            android:tint="#FFFFFF"
-            app:backgroundTint="@color/azul"
-            app:rippleColor="#FFFFFF" />
 
     </LinearLayout>
 
